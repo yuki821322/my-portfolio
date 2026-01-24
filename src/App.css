@@ -1,0 +1,29 @@
+@reference "tailwindcss";
+
+.hero {
+  @apply min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 flex items-center justify-center;
+}
+
+.hero-content {
+  @apply text-center px-6;
+}
+
+.hero-title {
+  @apply text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight;
+}
+
+.hero-title-accent {
+  @apply text-emerald-400;
+}
+
+.hero-description {
+  @apply text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto;
+}
+
+.hero-subtitle {
+  @apply text-slate-400;
+}
+
+.hero-button {
+  @apply bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 hover:scale-105 shadow-lg shadow-emerald-500/30;
+}
