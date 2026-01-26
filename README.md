@@ -1,73 +1,74 @@
-# React + TypeScript + Vite
+# TaskBoard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+社内タスク管理（カンバン）＋作業時間計測（タイマー）＋可視化（グラフ）を統合した、ポートフォリオ向けフロントエンドアプリです。  
+チーム（Project）と個人（Personal）のタスクを同じ仕組みで扱い、Focus/Calendar/Dashboard で「今・期間・工数」を見える化します。
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 特徴（Features）
+- カンバン（ToDo / Doing / Done）＋ドラッグ&ドロップ
+- タスク：担当者・期限・ラベル・コメント（想定）
+- Focus：現在抱えているタスク（進行中/期限近い/期限超過）を集約表示
+- カレンダー：期限/開始/完了を表示（予定）
+- タイマー：タスクごとの作業時間を記録（Start/Stop）
+- 可視化：作業時間を棒グラフ / 折れ線グラフで表示
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack / 使用技術
+### Frontend
+- React + TypeScript
+- Vite
 
-## Expanding the ESLint configuration
+### Libraries
+- @dnd-kit（Drag & Drop）
+- recharts（Charts）
+- date-fns（Date utility）
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Styling
+- CSS Modules
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
+## AI Support / 生成AIの活用について
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+本プロジェクトの設計・実装を進めるにあたり、以下の生成AIを補助的に活用しました。  
+（※最終的な設計判断・実装・調整はすべて自分で行っています）
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **ChatGPT**：要件整理、設計（データ構造・コンポーネント分割・フロー）、実装手順の検討
+- **Gemini**：仕様の言語化、UI/動線のアイデア整理、文章の推敲
+- **Claude**：コードレビュー観点の整理、実装の改善案（可読性・保守性）検討
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+活用方針：
+- 目的は「効率化」と「品質向上」であり、**そのままのコピペではなく**、提案内容を理解した上で取捨選択・修正して反映しています。
+- 実装時は動作確認・整合性チェックを行い、要件に合う形に最適化しています。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Why this stack / 技術選定理由
+- **React + TypeScript**：コンポーネント設計と型安全で拡張しやすい
+- **Vite**：開発が高速で、フロント主体の制作に最適
+- **CSS Modules**：スタイル衝突を防ぎつつ、構造が整理しやすい
+- **dnd-kit / recharts**：企業評価ポイント（DnD / 可視化）を実装しやすい
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## Architecture / 設計方針（v1）
+- フロントエンド完結（バックエンド無し）
+- すべてのタスクは **1つの配列 `tasks`** で管理し、属性で判別
+- 永続化：localStorage
+- 別タブ同期：`storage` イベント（擬似リアルタイム）
+
+---
+
+## Data Structure / データ構造（Schema）
+v1 はシンプルさ優先で `tasks: Task[]` の1配列で管理します。
+
+```ts
+export type TaskStatus = "todo" | "doing" | "done";
+
+export type Task = {
+  id: string;              // UUID
+  title: string;           // タスク名
+  status: TaskStatus;      // todo / doing / done
+  projectId: string | null;// 所属プロジェクト（個人用は null）
+  totalTime: number;       // 累積作業時間（秒）
+  isFocus: boolean;        // Focusリストに入れるか
+};
