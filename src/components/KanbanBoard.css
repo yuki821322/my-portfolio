@@ -1,0 +1,25 @@
+@reference "tailwindcss";
+
+.kanban-board {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4 flex-1;
+}
+
+.kanban-column {
+  @apply bg-slate-800/50 rounded-xl p-4 flex flex-col min-h-[300px];
+}
+
+.kanban-column-header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.kanban-column-title {
+  @apply text-sm font-semibold text-slate-300;
+}
+
+.kanban-column-count {
+  @apply bg-slate-700 text-slate-400 text-xs font-medium px-2 py-1 rounded-full;
+}
+
+.kanban-column-content {
+  @apply flex flex-col gap-3 flex-1;
+}

@@ -1,0 +1,53 @@
+@reference "tailwindcss";
+
+.modal-backdrop {
+  @apply fixed inset-0 bg-black/60 flex items-center justify-center z-50;
+}
+
+.modal {
+  @apply bg-slate-800 rounded-xl w-full max-w-md mx-4 shadow-2xl;
+}
+
+.modal-header {
+  @apply flex items-center justify-between p-4 border-b border-slate-700;
+}
+
+.modal-title {
+  @apply text-lg font-semibold text-white;
+}
+
+.modal-close {
+  @apply text-slate-400 hover:text-white text-2xl leading-none transition-colors;
+}
+
+.modal-form {
+  @apply p-4;
+}
+
+.modal-field {
+  @apply mb-4;
+}
+
+.modal-label {
+  @apply block text-sm font-medium text-slate-300 mb-2;
+}
+
+.modal-input {
+  @apply w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500;
+}
+
+.modal-textarea {
+  @apply w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 resize-none;
+}
+
+.modal-actions {
+  @apply flex gap-3 justify-end mt-6;
+}
+
+.modal-button-secondary {
+  @apply px-4 py-2 text-slate-400 hover:text-white border border-slate-600 hover:border-slate-500 rounded-lg transition-colors;
+}
+
+.modal-button-primary {
+  @apply px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+}

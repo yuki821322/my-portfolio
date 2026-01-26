@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Login } from './components/Login'
+import { Dashboard } from './components/Dashboard'
 import './App.css'
 
 type Screen = 'lp' | 'login' | 'app'
@@ -35,7 +36,7 @@ function App() {
           </button>
         </header>
         <main className="app-content">
-          <p className="app-placeholder">ダッシュボード（準備中）</p>
+          <Dashboard />
         </main>
       </div>
     )

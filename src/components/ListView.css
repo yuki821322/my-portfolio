@@ -1,0 +1,66 @@
+@reference "tailwindcss";
+
+.list-view {
+  @apply flex-1;
+}
+
+.list-view-empty {
+  @apply text-slate-500 text-center py-12;
+}
+
+.list-view-items {
+  @apply space-y-2;
+}
+
+.list-view-item {
+  @apply flex items-center gap-4 bg-slate-800/50 rounded-lg p-4 transition-opacity;
+}
+
+.list-view-item.done {
+  @apply opacity-60;
+}
+
+.list-view-item.done .list-view-title {
+  @apply line-through text-slate-500;
+}
+
+.list-view-checkbox-wrapper {
+  @apply relative flex items-center justify-center w-5 h-5 cursor-pointer;
+}
+
+.list-view-checkbox {
+  @apply absolute opacity-0 w-0 h-0;
+}
+
+.list-view-checkmark {
+  @apply w-5 h-5 border-2 border-slate-600 rounded transition-colors;
+}
+
+.list-view-checkbox:checked + .list-view-checkmark {
+  @apply bg-emerald-500 border-emerald-500;
+}
+
+.list-view-checkbox:checked + .list-view-checkmark::after {
+  content: '';
+  @apply absolute left-[6px] top-[2px] w-[6px] h-[10px] border-r-2 border-b-2 border-white rotate-45;
+}
+
+.list-view-content {
+  @apply flex-1 min-w-0;
+}
+
+.list-view-title {
+  @apply block text-white font-medium text-sm truncate;
+}
+
+.list-view-description {
+  @apply block text-slate-400 text-xs truncate mt-1;
+}
+
+.list-view-status {
+  @apply bg-slate-700 text-slate-300 text-xs rounded px-2 py-1 border-none outline-none cursor-pointer;
+}
+
+.list-view-delete {
+  @apply text-slate-500 hover:text-red-400 text-lg leading-none transition-colors;
+}
