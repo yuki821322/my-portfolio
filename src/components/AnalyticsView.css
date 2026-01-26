@@ -1,0 +1,41 @@
+@reference "tailwindcss";
+
+.analytics-view {
+  @apply space-y-6;
+}
+
+.analytics-stats {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4;
+}
+
+.analytics-stat-card {
+  @apply bg-slate-800/50 rounded-xl p-4 text-center;
+}
+
+.analytics-stat-value {
+  @apply block text-3xl font-bold text-emerald-400 mb-1;
+}
+
+.analytics-stat-label {
+  @apply text-slate-400 text-sm;
+}
+
+.analytics-charts {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.analytics-chart-card {
+  @apply bg-slate-800/50 rounded-xl p-4;
+}
+
+.analytics-chart-title {
+  @apply text-white font-semibold mb-4;
+}
+
+.analytics-chart {
+  @apply h-[250px];
+}
+
+.analytics-chart-empty {
+  @apply h-full flex items-center justify-center text-slate-500;
+}
