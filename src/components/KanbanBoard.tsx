@@ -10,7 +10,7 @@ type Props = {
 
 const columns: { status: TaskStatus; label: string }[] = [
   { status: 'todo', label: '未着手' },
-  { status: 'in_progress', label: '進行中' },
+  { status: 'doing', label: '進行中' },
   { status: 'done', label: '完了' },
 ]
 

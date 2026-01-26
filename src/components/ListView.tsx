@@ -9,7 +9,7 @@ type Props = {
 
 const statusLabels: Record<Task['status'], string> = {
   todo: '未着手',
-  in_progress: '進行中',
+  doing: '進行中',
   done: '完了',
 }
 
@@ -26,7 +26,7 @@ export function ListView({ tasks, onUpdateTask, onDeleteTask }: Props) {
   }
 
   const sortedTasks = [...tasks].sort((a, b) => {
-    const order = { todo: 0, in_progress: 1, done: 2 }
+    const order = { todo: 0, doing: 1, done: 2 }
     return order[a.status] - order[b.status]
   })
 
