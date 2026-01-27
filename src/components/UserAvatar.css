@@ -1,0 +1,29 @@
+@reference "tailwindcss";
+
+.user-avatar {
+  @apply rounded-full flex items-center justify-center overflow-hidden flex-shrink-0 text-white font-semibold;
+}
+
+.user-avatar-image {
+  @apply w-full h-full object-cover;
+}
+
+.user-avatar-initials {
+  @apply leading-none;
+}
+
+.user-avatar-sm {
+  @apply w-6 h-6 text-[10px];
+}
+
+.user-avatar-md {
+  @apply w-8 h-8 text-xs;
+}
+
+.user-avatar-lg {
+  @apply w-10 h-10 text-sm;
+}
+
+.user-avatar-empty {
+  @apply bg-slate-500;
+}

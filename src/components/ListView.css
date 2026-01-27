@@ -57,6 +57,10 @@
   @apply block text-slate-400 text-xs truncate mt-1;
 }
 
+.list-view-assignees {
+  @apply flex items-center gap-1 mt-2;
+}
+
 .list-view-status {
   @apply bg-slate-700 text-slate-300 text-xs rounded px-2 py-1 border-none outline-none cursor-pointer;
 }

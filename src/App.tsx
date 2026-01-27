@@ -1,27 +1,40 @@
 import { useState, useEffect } from 'react'
 import { Login } from './components/Login'
 import { Dashboard } from './components/Dashboard'
+import { UserAvatar } from './components/UserAvatar'
+import type { User } from './types/Task'
 import './App.css'
 
 type Screen = 'lp' | 'login' | 'app'
 
 function App() {
   const [screen, setScreen] = useState<Screen>('lp')
+  const [currentUser, setCurrentUser] = useState<User | null>(null)
 
   useEffect(() => {
     const user = localStorage.getItem('currentUser')
     if (user) {
       setScreen('app')
+      setCurrentUser(JSON.parse(user))
     }
   }, [])
 
   const handleLogout = () => {
     localStorage.removeItem('currentUser')
     setScreen('lp')
+    setCurrentUser(null)
+  }
+
+  const handleLogin = () => {
+    const user = localStorage.getItem('currentUser')
+    if (user) {
+      setCurrentUser(JSON.parse(user))
+    }
+    setScreen('app')
   }
 
   if (screen === 'login') {
-    return <Login onLogin={() => setScreen('app')} />
+    return <Login onLogin={handleLogin} />
   }
 
   if (screen === 'app') {
@@ -31,9 +44,20 @@ function App() {
           <h1 className="app-logo">
             Task<span className="app-logo-accent">Board</span>
           </h1>
-          <button onClick={handleLogout} className="logout-button">
-            ログアウト
-          </button>
+          <div className="app-header-actions">
+            {currentUser && (
+              <div className="app-user">
+                <UserAvatar user={currentUser} size="sm" />
+                <div className="app-user-info">
+                  <span className="app-user-name">{currentUser.name}</span>
+                  <span className="app-user-email">{currentUser.email}</span>
+                </div>
+              </div>
+            )}
+            <button onClick={handleLogout} className="logout-button">
+              ログアウト
+            </button>
+          </div>
         </header>
         <main className="app-content">
           <Dashboard />
