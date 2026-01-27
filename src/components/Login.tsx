@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import type { User } from '../types/Task'
 import './Login.css'
 
 type Props = {
@@ -9,8 +8,6 @@ type Props = {
 export function Login({ onLogin }: Props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
-  const [isRegisterMode, setIsRegisterMode] = useState(false)
   const [error, setError] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -23,8 +20,10 @@ export function Login({ onLogin }: Props) {
     }
 
     // localStorage認証（デモ用）
-    const users: User[] = JSON.parse(localStorage.getItem('users') || '[]')
-    const user = users.find((u) => u.email === email || u.name === email)
+    const users = JSON.parse(localStorage.getItem('users') || '[]')
+    const user = users.find((u: { email: string; password: string }) =>
+      u.email === email && u.password === password
+    )
 
     if (user) {
       localStorage.setItem('currentUser', JSON.stringify(user))
@@ -34,34 +33,21 @@ export function Login({ onLogin }: Props) {
     }
   }
 
-  const handleRegister = (e: React.FormEvent) => {
-    e.preventDefault()
-    setError('')
-
+  const handleRegister = () => {
     if (!email || !password) {
       setError('メールアドレスとパスワードを入力してください')
       return
     }
 
-    if (!name.trim()) {
-      setError('名前を入力してください')
-      return
-    }
-
-    const users: User[] = JSON.parse(localStorage.getItem('users') || '[]')
-    const exists = users.some((u) => u.email === email)
+    const users = JSON.parse(localStorage.getItem('users') || '[]')
+    const exists = users.some((u: { email: string }) => u.email === email)
 
     if (exists) {
       setError('このメールアドレスは既に登録されています')
       return
     }
 
-    const newUser: User = {
-      id: crypto.randomUUID(),
-      email,
-      name: name.trim(),
-      createdAt: new Date().toISOString(),
-    }
+    const newUser = { email, password }
     users.push(newUser)
     localStorage.setItem('users', JSON.stringify(users))
     localStorage.setItem('currentUser', JSON.stringify(newUser))
@@ -74,34 +60,18 @@ export function Login({ onLogin }: Props) {
         <h1 className="login-title">
           Task<span className="login-title-accent">Board</span>
         </h1>
-        <p className="login-subtitle">
-          {isRegisterMode ? '新規アカウントを作成' : 'ログインして始める'}
-        </p>
+        <p className="login-subtitle">ログインして始める</p>
 
-        <form onSubmit={isRegisterMode ? handleRegister : handleSubmit} className="login-form">
-          {isRegisterMode && (
-            <div className="login-field">
-              <label htmlFor="name" className="login-label">名前</label>
-              <input
-                id="name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="login-input"
-                placeholder="山田 太郎"
-              />
-            </div>
-          )}
-
+        <form onSubmit={handleSubmit} className="login-form">
           <div className="login-field">
-            <label htmlFor="email" className="login-label">メールアドレス / ユーザー名</label>
+            <label htmlFor="email" className="login-label">メールアドレス</label>
             <input
               id="email"
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="login-input"
-              placeholder="example@mail.com または 山田 太郎"
+              placeholder="example@mail.com"
             />
           </div>
 
@@ -120,18 +90,11 @@ export function Login({ onLogin }: Props) {
           {error && <p className="login-error">{error}</p>}
 
           <button type="submit" className="login-button">
-            {isRegisterMode ? '登録' : 'ログイン'}
+            ログイン
           </button>
 
-          <button
-            type="button"
-            onClick={() => {
-              setIsRegisterMode(!isRegisterMode)
-              setError('')
-            }}
-            className="login-button-secondary"
-          >
-            {isRegisterMode ? 'ログインに戻る' : '新規登録'}
+          <button type="button" onClick={handleRegister} className="login-button-secondary">
+            新規登録
           </button>
         </form>
       </div>
