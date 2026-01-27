@@ -1,19 +1,34 @@
 import { useState } from 'react'
+import type { Project, User } from '../types/Task'
+import { AssigneeSelector } from './AssigneeSelector'
 import './AddTaskModal.css'
 
 type Props = {
-  onAdd: (title: string, description: string) => void
+  projects: Project[]
+  selectedProjectId: string | null
+  availableAssignees: User[]
+  currentUser: User | null
+  onAdd: (title: string, description: string, projectId: string | null, assignedTo: string[]) => void
   onClose: () => void
 }
 
-export function AddTaskModal({ onAdd, onClose }: Props) {
+export function AddTaskModal({
+  projects,
+  selectedProjectId,
+  availableAssignees,
+  currentUser,
+  onAdd,
+  onClose,
+}: Props) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [projectId, setProjectId] = useState<string | null>(selectedProjectId)
+  const [assignedTo, setAssignedTo] = useState<string[]>(currentUser ? [currentUser.id] : [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!title.trim()) return
-    onAdd(title.trim(), description.trim())
+    onAdd(title.trim(), description.trim(), projectId, assignedTo)
     onClose()
   }
 
@@ -54,6 +69,35 @@ export function AddTaskModal({ onAdd, onClose }: Props) {
               rows={3}
             />
           </div>
+
+          {projects.length > 0 && (
+            <div className="modal-field">
+              <label htmlFor="task-project" className="modal-label">プロジェクト</label>
+              <select
+                id="task-project"
+                className="modal-input"
+                value={projectId || ''}
+                onChange={(e) => setProjectId(e.target.value || null)}
+              >
+                <option value="">プロジェクトなし</option>
+                {projects.map((project) => (
+                  <option key={project.id} value={project.id}>{project.name}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {availableAssignees.length > 0 && (
+            <div className="modal-field">
+              <label className="modal-label">担当者</label>
+              <AssigneeSelector
+                users={availableAssignees}
+                selectedIds={assignedTo}
+                onChange={setAssignedTo}
+              />
+            </div>
+          )}
+
           <div className="modal-actions">
             <button type="button" className="modal-button-secondary" onClick={onClose}>
               キャンセル

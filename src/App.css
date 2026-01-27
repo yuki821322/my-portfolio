@@ -30,7 +30,7 @@
 
 /* App Main */
 .app-main {
-  @apply min-h-screen bg-slate-900;
+  @apply min-h-screen bg-slate-900 flex flex-col;
 }
 
 .app-header {
@@ -49,8 +49,28 @@
   @apply px-4 py-2 text-sm text-slate-400 hover:text-white border border-slate-700 hover:border-slate-600 rounded-lg transition-colors;
 }
 
+.app-header-actions {
+  @apply flex items-center gap-4;
+}
+
+.app-user {
+  @apply flex items-center gap-2;
+}
+
+.app-user-info {
+  @apply flex flex-col;
+}
+
+.app-user-name {
+  @apply text-sm text-white;
+}
+
+.app-user-email {
+  @apply text-xs text-slate-400;
+}
+
 .app-content {
-  @apply p-6;
+  @apply flex-1;
 }
 
 .app-placeholder {
