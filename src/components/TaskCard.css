@@ -32,14 +32,6 @@
   @apply text-slate-500 hover:text-red-400 text-lg leading-none transition-colors;
 }
 
-.task-card-assignees {
-  @apply flex items-center gap-2 mb-3;
-}
-
-.task-card-assignees-more {
-  @apply text-xs text-slate-400;
-}
-
 .task-card-description {
   @apply text-slate-400 text-xs mb-3 line-clamp-2;
 }

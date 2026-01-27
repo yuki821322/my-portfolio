@@ -51,23 +51,3 @@
 .modal-button-primary {
   @apply px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
 }
-
-.modal-select {
-  @apply w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500;
-}
-
-.assignee-list {
-  @apply flex flex-wrap gap-2;
-}
-
-.assignee-option {
-  @apply flex items-center gap-2 px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-sm text-slate-300 transition-all;
-}
-
-.assignee-option:hover {
-  @apply border-slate-500;
-}
-
-.assignee-option.active {
-  @apply bg-emerald-500/20 border-emerald-500 text-emerald-400;
-}

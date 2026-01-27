@@ -1,13 +1,11 @@
-import type { Task, TaskStatus, User } from '../types/Task'
+import type { Task, TaskStatus } from '../types/Task'
 import { TaskCard } from './TaskCard'
 import './KanbanBoard.css'
 
 type Props = {
   tasks: Task[]
-  users: User[]
   onUpdateTask: (task: Task) => void
   onDeleteTask: (taskId: string) => void
-  onSelectTask: (taskId: string) => void
 }
 
 const columns: { status: TaskStatus; label: string }[] = [
@@ -16,7 +14,7 @@ const columns: { status: TaskStatus; label: string }[] = [
   { status: 'done', label: '完了' },
 ]
 
-export function KanbanBoard({ tasks, users, onUpdateTask, onDeleteTask, onSelectTask }: Props) {
+export function KanbanBoard({ tasks, onUpdateTask, onDeleteTask }: Props) {
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault()
   }
@@ -54,8 +52,6 @@ export function KanbanBoard({ tasks, users, onUpdateTask, onDeleteTask, onSelect
                   task={task}
                   onUpdate={onUpdateTask}
                   onDelete={onDeleteTask}
-                  assignees={users.filter((user) => task.assignedTo.includes(user.id))}
-                  onSelect={onSelectTask}
                 />
               ))}
           </div>
