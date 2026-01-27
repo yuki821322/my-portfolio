@@ -1,0 +1,177 @@
+@reference "tailwindcss";
+
+.task-detail-panel {
+  @apply w-96 bg-slate-900 border-l border-slate-800 p-4 h-full overflow-y-auto;
+}
+
+.task-detail-header {
+  @apply flex items-start justify-between mb-4;
+}
+
+.task-detail-title {
+  @apply text-lg font-semibold text-white;
+}
+
+.task-detail-meta {
+  @apply text-xs text-slate-400 mt-1;
+}
+
+.task-detail-close {
+  @apply text-slate-400 hover:text-white text-2xl leading-none;
+}
+
+.task-detail-section {
+  @apply mb-6;
+}
+
+.task-detail-section-title {
+  @apply text-xs uppercase tracking-wide text-slate-500 mb-2;
+}
+
+.task-detail-description {
+  @apply text-sm text-slate-300;
+}
+
+.task-detail-empty {
+  @apply text-xs text-slate-500;
+}
+
+.task-detail-assignees {
+  @apply flex flex-col gap-2;
+}
+
+.task-detail-assignee {
+  @apply flex items-center gap-2 text-sm text-slate-200;
+}
+
+.task-detail-comments {
+  @apply flex flex-col gap-3;
+}
+
+.task-detail-comment {
+  @apply flex gap-2;
+}
+
+.task-detail-comment-header {
+  @apply flex items-center gap-2;
+}
+
+.task-detail-comment-user {
+  @apply text-sm text-white;
+}
+
+.task-detail-comment-date {
+  @apply text-xs text-slate-500;
+}
+
+.task-detail-comment-content {
+  @apply text-sm text-slate-300 mt-1;
+}
+
+.task-detail-comment-form {
+  @apply mt-4 flex flex-col gap-2;
+}
+
+.task-detail-textarea {
+  @apply w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 resize-none;
+}
+
+.task-detail-comment-submit {
+  @apply self-end px-3 py-1.5 bg-emerald-500 text-white text-sm rounded-lg disabled:opacity-50;
+}
+
+.task-detail-activities {
+  @apply flex flex-col gap-3;
+}
+
+.task-detail-activity {
+  @apply bg-slate-800/50 rounded-lg p-3;
+}
+
+.task-detail-activity-title {
+  @apply flex items-center justify-between text-xs text-slate-400;
+}
+
+.task-detail-activity-detail {
+  @apply text-sm text-slate-200 mt-2;
+}
+
+.task-detail-content {
+  @apply flex flex-col;
+}
+
+.task-detail-meta-date {
+  @apply text-xs text-slate-400 mt-1;
+}
+
+.task-detail-select {
+  @apply w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500;
+}
+
+.task-detail-time {
+  @apply text-lg font-semibold text-emerald-400;
+}
+
+.task-detail-meta-item {
+  @apply flex items-center justify-between py-2 border-b border-slate-700/50 last:border-0;
+}
+
+.task-detail-meta-label {
+  @apply text-xs text-slate-400;
+}
+
+.task-detail-meta-value {
+  @apply text-sm text-slate-200 flex items-center gap-2;
+}
+
+.task-detail-assignee {
+  @apply flex items-center gap-2 px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-300 transition-all cursor-pointer;
+}
+
+.task-detail-assignee:hover {
+  @apply border-slate-600;
+}
+
+.task-detail-assignee.active {
+  @apply bg-emerald-500/20 border-emerald-500 text-emerald-400;
+}
+
+.task-detail-tabs {
+  @apply flex gap-2 mb-4 border-b border-slate-700 pb-2;
+}
+
+.task-detail-tab {
+  @apply px-3 py-2 text-sm text-slate-400 rounded-t-lg transition-colors;
+}
+
+.task-detail-tab:hover {
+  @apply text-white;
+}
+
+.task-detail-tab.active {
+  @apply text-white bg-slate-800;
+}
+
+.task-detail-comments-section {
+  @apply flex flex-col gap-4;
+}
+
+.task-detail-comment-body {
+  @apply flex-1;
+}
+
+.task-detail-activity {
+  @apply flex gap-2;
+}
+
+.task-detail-activity-body {
+  @apply flex-1 flex flex-col gap-1;
+}
+
+.task-detail-activity-text {
+  @apply text-sm text-slate-300;
+}
+
+.task-detail-activity-date {
+  @apply text-xs text-slate-500;
+}

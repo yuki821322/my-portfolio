@@ -1,0 +1,102 @@
+@reference "tailwindcss";
+
+.project-modal {
+  @apply max-w-lg;
+}
+
+.project-modal-colors {
+  @apply flex gap-2 flex-wrap;
+}
+
+.project-modal-color {
+  @apply w-8 h-8 rounded-full border-2 border-transparent;
+}
+
+.project-modal-color.active {
+  @apply border-white;
+}
+
+.project-modal-toggle {
+  @apply flex gap-2;
+}
+
+.project-modal-toggle-button {
+  @apply flex-1 px-3 py-2 text-sm rounded-lg border border-slate-600 text-slate-300 hover:text-white hover:border-slate-500;
+}
+
+.project-modal-toggle-button.active {
+  @apply bg-slate-700 text-white border-slate-500;
+}
+.project-modal {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.color-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.color-option {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+}
+
+.color-option.active {
+  border-color: #1e293b;
+}
+
+.type-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.type-option {
+  flex: 1;
+  padding: 10px 16px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #64748b;
+  transition: all 0.15s;
+}
+
+.type-option:hover {
+  background: #e2e8f0;
+}
+
+.type-option.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.modal-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+}
+
+.modal-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}

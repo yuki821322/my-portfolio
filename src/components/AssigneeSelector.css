@@ -1,0 +1,17 @@
+@reference "tailwindcss";
+
+.assignee-selector {
+  @apply grid grid-cols-2 gap-2;
+}
+
+.assignee-item {
+  @apply flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-600 text-slate-300 text-sm;
+}
+
+.assignee-item.selected {
+  @apply border-emerald-400 text-white bg-slate-700;
+}
+
+.assignee-name {
+  @apply text-sm;
+}
